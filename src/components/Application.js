@@ -43,7 +43,12 @@ class Application extends Component {
     this.setState({ items });
   };
 
-  markAllUnpacked = () => {};
+  markAllUnpacked = () => {
+    const items = this.state.items.map((item) => {
+      return { ...item, packed: false };
+    });
+    this.setState({ items });
+  };
   // How are we going to manipulate the state?
   // Ideally, users are going to want to add, remove,
   // and check off items, right?
@@ -69,7 +74,9 @@ class Application extends Component {
           onRemove={this.removeItem}
           onToggle={this.toggleItem}
         />
-        <button className="button full-width">Mark All As Unpacked</button>
+        <button className="button full-width" onClick={this.markAllUnpacked}>
+          Mark All As Unpacked
+        </button>
       </div>
     );
   }
